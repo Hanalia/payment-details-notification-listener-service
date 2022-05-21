@@ -118,6 +118,10 @@ public class NotificationListenerExampleService extends NotificationListenerServ
     private static final class ApplicationPackageNames {
         public static final String SAMSUNGPAY_PACK_NAME = "com.samsung.android.spay";
         public static final String KAKAOBANK_PACK_NAME = "com.kakaobank.channel";
+
+        // this is Fake Notifications App (Zopsoft Technology) for testing
+        public static final String FAKE_PACK_NAME = "zopsoft.com.zerofall";
+
     }
 
     /*
@@ -127,6 +131,8 @@ public class NotificationListenerExampleService extends NotificationListenerServ
     public static final class InterceptedNotificationCode {
         public static final int SAMSUNGPAY_PACK_CODE = 4;
         public static final int KAKAOBANK_PACK_CODE = 5;
+        public static final int FAKE_PACK_CODE = 6;
+
         public static final int OTHER_NOTIFICATIONS_CODE = 0; // We ignore all notification with code == 4
     }
 
@@ -137,13 +143,15 @@ public class NotificationListenerExampleService extends NotificationListenerServ
             return (InterceptedNotificationCode.SAMSUNGPAY_PACK_CODE);
         } else if (packageName.equals(ApplicationPackageNames.KAKAOBANK_PACK_NAME)) {
             return (InterceptedNotificationCode.KAKAOBANK_PACK_CODE);
+        } else if (packageName.equals(ApplicationPackageNames.FAKE_PACK_NAME)) {
+            return (InterceptedNotificationCode.FAKE_PACK_CODE);
         } else {
             return (InterceptedNotificationCode.OTHER_NOTIFICATIONS_CODE);
         }
     }
 
 
-    // 이게 굳이 왜 필요한지 아직 모르겠음
+    // 이게 굳이 왜 필요한지 아직 모르겠음 // legacy code인 것으로 추정됨
     @Override
     public IBinder onBind(Intent intent) {
         return super.onBind(intent);
